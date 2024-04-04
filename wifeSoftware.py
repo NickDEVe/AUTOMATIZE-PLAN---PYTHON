@@ -54,7 +54,7 @@ layout = [
     [te.Input('', key=('numMes'), background_color='white')],
     [te.Text('COLOQUE O NOME DA PASTA QUE DESEJA SALVAR OS ARQUIVOS')],
     [te.Input('', key='sele', background_color='white')],
-    #[te.Input(enable_events= True, key='Arquivo', font=('Arial Bold', 12), expand_x=True), te.FolderBrowse(key='sele')],
+    
 
 
     [te.Button('Salvar')]
@@ -81,7 +81,11 @@ while True:
         
 
     if eventos == 'Salvar':
-        
+         
+        local = valores['sele']
+            
+        os.mkdir(f"{local}")
+            
         for empresa in empresas:
 
             #pegando a planilha modelo para formatar
@@ -98,10 +102,11 @@ while True:
 
             #salvando os arquivo na pasta especifica
             
+           
             plan.save(empresa)
 
             
-        #local = valores['sele']
+        
 
         
         arquivos = os.listdir()
@@ -112,5 +117,3 @@ while True:
 
             if 'xlsx' in arquivo :
                 os.rename (arquivo, f'{local}\{arquivo}')
-                
-       
